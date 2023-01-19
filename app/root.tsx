@@ -8,9 +8,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import { inject } from "@vercel/analytics";
 
-import tailwindStylesheetUrl from "./styles/tailwind.css";
 import { getUser } from "./session.server";
+import tailwindStylesheetUrl from "./styles/tailwind.css";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
@@ -29,6 +30,7 @@ export async function loader({ request }: LoaderArgs) {
 }
 
 export default function App() {
+  inject();
   return (
     <html lang="en" className="h-full">
       <head>
